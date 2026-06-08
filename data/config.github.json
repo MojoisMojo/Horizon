@@ -1,22 +1,22 @@
 {
   "version": "1.0",
   "ai": {
-    "provider": "openai",
-    "model": "gpt-4",
-    "api_key_env": "OPENAI_API_KEY",
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "api_key_env": "DEEPSEEK_API_KEY",
     "temperature": 0.3,
-    "max_tokens": 4096,
+    "max_tokens": 8192,
     "throttle_sec": 0,
     "analysis_concurrency": 1,
     "enrichment_concurrency": 1
   },
   "email": {
-    "enabled": false,
+    "enabled": true,
     "smtp_server": "smtp.qq.com",
     "smtp_port": 465,
     "imap_server": "imap.qq.com",
     "imap_port": 993,
-    "email_address": "xxx@qq.com",
+    "email_address": "${HORIZON_EMAIL}",
     "sender_name": "Horizon Daily",
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
@@ -26,13 +26,13 @@
       {
         "type": "user_events",
         "username": "torvalds",
-        "enabled": true
+        "enabled": false
       },
       {
         "type": "repo_releases",
         "owner": "astral-sh",
         "repo": "uv",
-        "enabled": true
+        "enabled": false
       }
     ],
     "hackernews": {
@@ -46,6 +46,36 @@
         "url": "https://simonwillison.net/atom/everything/",
         "enabled": true,
         "category": "ai-tools"
+      },
+      {
+        "name": "arXiv AI",
+        "url": "https://rss.arxiv.org/rss/cs.AI",
+        "enabled": true,
+        "category": "ai-research"
+      },
+      {
+        "name": "arXiv Multi-Agent Systems",
+        "url": "https://rss.arxiv.org/rss/cs.MA",
+        "enabled": true,
+        "category": "agent-research"
+      },
+      {
+        "name": "arXiv Computation & Language",
+        "url": "https://rss.arxiv.org/rss/cs.CL",
+        "enabled": true,
+        "category": "ai-research"
+      },
+      {
+        "name": "ServeTheHome",
+        "url": "https://www.servethehome.com/feed/",
+        "enabled": true,
+        "category": "hardware"
+      },
+      {
+        "name": "Tom's Hardware",
+        "url": "https://www.tomshardware.com/feeds/all",
+        "enabled": true,
+        "category": "hardware"
       },
       {
         "name": "LWN.net (subscriber full-text)",
@@ -63,6 +93,22 @@
           "sort": "hot",
           "time_filter": "day",
           "fetch_limit": 15,
+          "min_score": 50
+        },
+        {
+          "subreddit": "LocalLLaMA",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 15,
+          "min_score": 30
+        },
+        {
+          "subreddit": "singularity",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 10,
           "min_score": 50
         }
       ],
@@ -86,7 +132,7 @@
       "reply_min_likes": 5
     },
     "openbb": {
-      "enabled": false,
+      "enabled": true,
       "fetch_filings": false,
       "filings_provider": "sec",
       "watchlists": [
@@ -97,6 +143,14 @@
           "fetch_limit": 20,
           "category": "equities",
           "symbols": ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "META", "TSLA"]
+        },
+        {
+          "name": "semiconductors",
+          "enabled": true,
+          "provider": "yfinance",
+          "fetch_limit": 20,
+          "category": "semiconductors",
+          "symbols": ["AMD", "INTC", "ASML", "TSM", "MU", "AVGO", "QCOM", "AMAT", "LRCX", "ARM"]
         }
       ]
     },
