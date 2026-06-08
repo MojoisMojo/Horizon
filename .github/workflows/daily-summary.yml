@@ -1,9 +1,9 @@
 name: Daily Horizon Summary
 
 on:
-  # schedule:
-  #   - cron: '0 0 */2 * *'  # Runs every 2 days at 00:00 UTC
-  #     timezone: 'Asia/Shanghai'
+  schedule:
+    - cron: '0 2,14 * * *'  # Runs daily at 02:00 and 14:00 Beijing time
+      timezone: 'Asia/Shanghai'
   workflow_dispatch:      # Allow manual trigger
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           HORIZON_EMAIL: ${{ secrets.HORIZON_EMAIL }}
           LWN_KEY: ${{ secrets.LWN_KEY }}
-        run: uv run horizon --hours 48
+        run: uv run horizon --hours 12
 
       - name: Set current date as environment variable
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV

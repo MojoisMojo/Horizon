@@ -7,8 +7,8 @@
     "temperature": 0.3,
     "max_tokens": 8192,
     "throttle_sec": 0,
-    "analysis_concurrency": 1,
-    "enrichment_concurrency": 1
+    "analysis_concurrency": 4,
+    "enrichment_concurrency": 2
   },
   "email": {
     "enabled": true,
@@ -48,22 +48,28 @@
         "category": "ai-tools"
       },
       {
-        "name": "arXiv AI",
-        "url": "https://rss.arxiv.org/rss/cs.AI",
-        "enabled": true,
-        "category": "ai-research"
-      },
-      {
         "name": "arXiv Multi-Agent Systems",
         "url": "https://rss.arxiv.org/rss/cs.MA",
         "enabled": true,
         "category": "agent-research"
       },
       {
-        "name": "arXiv Computation & Language",
-        "url": "https://rss.arxiv.org/rss/cs.CL",
+        "name": "机器之心",
+        "url": "https://www.jiqizhixin.com/rss",
         "enabled": true,
-        "category": "ai-research"
+        "category": "ai-industry"
+      },
+      {
+        "name": "量子位",
+        "url": "https://www.qbitai.com/feed",
+        "enabled": true,
+        "category": "ai-industry"
+      },
+      {
+        "name": "InfoQ 中国",
+        "url": "https://www.infoq.cn/feed?token=${INFOQ_TOKEN}&utm_source=feed",
+        "enabled": true,
+        "category": "ai-tech"
       },
       {
         "name": "ServeTheHome",
@@ -165,7 +171,7 @@
   },
   "filtering": {
     "ai_score_threshold": 6.0,
-    "time_window_hours": 24
+    "time_window_hours": 12
   },
   "webhook": {
     "enabled": false,
