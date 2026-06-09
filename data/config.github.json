@@ -176,7 +176,7 @@
     "max_items": 40,
     "category_groups": {
       "research": {
-        "limit": 8,
+        "limit": 10,
         "categories": ["agent-research"]
       },
       "ai-industry": {
