@@ -48,7 +48,7 @@ data/mcp-runs/
 docs/_posts/*.md
 
 # Logs
-logs/*.log
+logs/**/*.txt
 *.log
 
 # macOS
