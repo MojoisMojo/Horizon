@@ -7,8 +7,8 @@
     "temperature": 0.3,
     "max_tokens": 8192,
     "throttle_sec": 0,
-    "analysis_concurrency": 4,
-    "enrichment_concurrency": 2,
+    "analysis_concurrency": 2,
+    "enrichment_concurrency": 1,
     "languages": ["zh"]
   },
   "email": {
@@ -173,10 +173,23 @@
   "filtering": {
     "ai_score_threshold": 6.0,
     "time_window_hours": 24,
-    "max_items": null,
-    "category_groups": {},
+    "max_items": 40,
+    "category_groups": {
+      "research": {
+        "limit": 8,
+        "categories": ["agent-research"]
+      },
+      "ai-industry": {
+        "limit": 10,
+        "categories": ["ai-industry", "ai-tech", "ai-tools"]
+      },
+      "hardware": {
+        "limit": 5,
+        "categories": ["hardware"]
+      }
+    },
     "default_group": "other",
-    "default_group_limit": null
+    "default_group_limit": 10
   },
   "webhook": {
     "enabled": false,
