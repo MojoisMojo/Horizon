@@ -236,7 +236,10 @@ class HorizonOrchestrator:
         Returns:
             List[ContentItem]: All fetched items
         """
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(
+            timeout=30.0,
+            headers={"User-Agent": "Horizon/1.0 (News Aggregator; https://github.com/Thysrael/Horizon)"}
+        ) as client:
             tasks = []
 
             # GitHub sources
