@@ -2,7 +2,7 @@
   "version": "1.0",
   "ai": {
     "provider": "openai",
-    "model": "gpt-5.4-mini",
+    "model": "deepseek-v4-flash",
     "base_url": "${HORIZON_GPT54_BASE_URL}",
     "api_key_env": "HORIZON_GPT54_API_KEY",
     "temperature": 0.3,
