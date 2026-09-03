@@ -1,8 +1,9 @@
 {
   "ai": {
-    "provider": "gemini",
-    "model": "gemini-2.5-flash-lite",
-    "api_key_env": "GOOGLE_API_KEY",
+    "provider": "openai",
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "base_url": "https://api.siliconflow.cn/v1",
+    "api_key_env": "SILICONFLOW_API_KEY",
     "temperature": 0.2,
     "max_tokens": 4096,
     "throttle_sec": 4,

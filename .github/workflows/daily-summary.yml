@@ -35,9 +35,34 @@ jobs:
       - name: Setup subscribers
         run: echo '${{ secrets.HORIZON_SUBSCRIBERS }}' > data/subscribers.json
 
+      - name: Verify SiliconFlow API
+        env:
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
+        run: |
+          uv run python - <<'PY'
+          import asyncio
+          import json
+          from src.ai.client import create_ai_client
+          from src.models import Config
+
+          with open("data/config.json", encoding="utf-8") as config_file:
+              config = Config.model_validate(json.load(config_file))
+
+          async def verify() -> None:
+              client = create_ai_client(config.ai)
+              await client.complete(
+                  system="Return valid JSON only.",
+                  user='Return exactly: {"status":"ok"}',
+                  max_tokens=32,
+              )
+
+          asyncio.run(verify())
+          print(f"Verified AI provider: {config.ai.provider.value} / {config.ai.model}")
+          PY
+
       - name: Run Horizon
         env:
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          SILICONFLOW_API_KEY: ${{ secrets.SILICONFLOW_API_KEY }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
           HORIZON_EMAIL: ${{ secrets.HORIZON_EMAIL }}
           INFOQ_TOKEN: ${{ secrets.INFOQ_TOKEN }}
