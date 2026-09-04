@@ -155,6 +155,7 @@ class ContentAnalyzer:
         response = await self.client.complete(
             system=analysis_system_prompt(profile),
             user=user_prompt,
+            max_tokens=512,
         )
 
         result, failure = self._validate_analysis_response(response)
@@ -167,6 +168,7 @@ class ContentAnalyzer:
                     f"({failure}). Analyze the item again and return only the required JSON object."
                 ),
                 temperature=0,
+                max_tokens=512,
             )
             result, failure = self._validate_analysis_response(repair_response)
 

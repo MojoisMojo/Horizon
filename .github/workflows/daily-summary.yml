@@ -43,18 +43,24 @@ jobs:
           import asyncio
           import json
           from src.ai.client import create_ai_client
-          from src.models import Config
+          from src.ai.utils import parse_json_response
+          from src.models import Config, ContentAnalysis
 
           with open("data/config.json", encoding="utf-8") as config_file:
               config = Config.model_validate(json.load(config_file))
 
           async def verify() -> None:
               client = create_ai_client(config.ai)
-              await client.complete(
-                  system="Return valid JSON only.",
-                  user='Return exactly: {"status":"ok"}',
-                  max_tokens=32,
+              response = await client.complete(
+                  system=(
+                      "Return valid JSON only. The JSON object must contain "
+                      "score (number 0-10), reason (string), summary (string), "
+                      "and tags (array of strings)."
+                  ),
+                  user="Analyze this item: Title: Provider health check. Source: test.",
+                  max_tokens=512,
               )
+              ContentAnalysis.model_validate(parse_json_response(response))
 
           asyncio.run(verify())
           print(f"Verified AI provider: {config.ai.provider.value} / {config.ai.model}")
